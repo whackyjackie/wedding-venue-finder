@@ -1,6 +1,7 @@
 """Database management for wedding venue finder."""
 import sqlite3
 import json
+import os
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
@@ -10,6 +11,8 @@ class VenueDatabase:
 
     def __init__(self, db_path: str = "data/venues.db"):
         self.db_path = db_path
+        # Create data directory if it doesn't exist
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
         self.init_database()
 
     def get_connection(self):
