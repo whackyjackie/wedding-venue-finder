@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics - Wedding Venue Finder{% endblock %}
+
+{% block content %}
+<div class="section">
+    <h2 style="color: #667eea; margin-bottom: 20px;">Venue Statistics</h2>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Overview</h3>
+            <div class="stat-item">
+                <span>Total Venues</span>
+                <strong>{{ stats.total }}</strong>
+            </div>
+            <div class="stat-item">
+                <span>Average Capacity</span>
+                <strong>{{ stats.avg_capacity }} guests</strong>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <h3>By Region</h3>
+            {% for region, count in stats.by_region.items() %}
+            <div class="stat-item">
+                <span>{{ region }}</span>
+                <strong>{{ count }}</strong>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="stat-card">
+            <h3>Overnight Accommodations</h3>
+            {% for accommodation, count in stats.by_accommodations.items() %}
+            <div class="stat-item">
+                <span>{{ accommodation|capitalize }}</span>
+                <strong>{{ count }}</strong>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<p style="margin-top: 30px;">
+    <a href="/" style="color: #667eea;">← Back to All Venues</a>
+</p>
+{% endblock %}

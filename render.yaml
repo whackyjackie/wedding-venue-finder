@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: wedding-venue-finder
+    env: python
+    buildCommand: "pip install -r requirements.txt && python seed_data.py"
+    startCommand: "gunicorn web:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
