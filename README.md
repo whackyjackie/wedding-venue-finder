@@ -4,7 +4,7 @@ A comprehensive tool to research and organize wedding venues for a 2-3 day retre
 
 ## Features
 
-- SQLite database for venue information
+- Dual database support: SQLite (local) / PostgreSQL (production)
 - Reddit scraper to find venue discussions
 - Web search for venue reviews
 - CLI interface for data management
@@ -12,6 +12,7 @@ A comprehensive tool to research and organize wedding venues for a 2-3 day retre
 - CSV export functionality
 - Intelligent caching to avoid redundant searches
 - Rate limiting for respectful web scraping
+- Production-ready deployment to Render
 
 ## Installation
 
@@ -29,6 +30,21 @@ pip install -r requirements.txt
 ```bash
 python seed_data.py
 ```
+
+## Deployment to Render (Live Website)
+
+To deploy this to a live, shareable website:
+
+1. **Create PostgreSQL Database** on Render (free tier)
+2. **Create Web Service** connected to your GitHub repo
+3. **Add Environment Variable**: `DATABASE_URL` pointing to your PostgreSQL database
+4. Deploy automatically triggers
+
+**Full step-by-step guide**: See [RENDER_SETUP.md](RENDER_SETUP.md)
+
+The app automatically detects the environment:
+- **Local development**: Uses SQLite (`data/venues.db`)
+- **Production (Render)**: Uses PostgreSQL (persistent across deployments)
 
 ## Usage
 
